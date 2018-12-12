@@ -1,0 +1,51 @@
+<!--index.wxml-->
+<view class="logo">iToken</view>
+<view class="container backimg">
+  <view class="userinfo">
+    <block wx:if="{{!hasUserInfo && canIUse}}">
+    <button open-type="getUserInfo" bindgetuserinfo="getUserInfo"> </button>
+      <span>登录授权</span>
+    </block>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+<swiper current="{{currentTab}}" duration="500"  bindchange="swiperTab" class="myswiper listcount"> 
+    <swiper-item ><scroll-view scroll-y>
+    <!--start-->
+          <view wx:for="{{array}}" catchtap="onclickByPinpai" wx:key="id" wx:for-index="idx" wx:for-item="itemName" class="list" id="sweet{{itemName.id}}" data-have="{{itemName.isHave}}" data-currentCount="{{itemName.currentCount}}" data-amount="{{itemName.amount}}"><image class="spanlogo" src="{{itemName.avatarUrl ? itemName.avatarUrl:defaultIcon}}" /><span class="spanfont">{{itemName.symbol}}</span>
+      <view><p><em class="em1">总额</em><em>{{itemName.totalCount}}</em></p><p><em class="em1">剩余</em><em>{{itemName.currentCount}}</em></p>
+      </view>
+      </view>
+    <!--end-->
+    </scroll-view></swiper-item>
+    <swiper-item>
+    <block wx:if="{{hasUserInfo}}">
+              <view class="listcount myasset" wx:if="{{hasUserInfo}}">
+    <view wx:for="{{marray}}" bindtap="onclickDetail" wx:for-index="idx" wx:for-item="itemName" wx:key="id" class="list" id="sweet{{itemName.id}}"><image class="spanlogo" src="{{itemName.avatarUrl}}" />
+      <span class="spanfont">{{itemName.symbol}}</span>
+    <view>
+    <p>{{itemName.amount}}</p>
+    </view>
+      <image src="../../images/right.png"  class="right" />
+    </view>
+  </view>
+    </block>
+    <block wx:else>
+    <image src="../../images/sadbox.png"  class="sedbox" />
+    </block>
+    </swiper-item>
+</swiper>
+  <view class="nav swiper-tab">
+    <view class="bg"></view>
+    <view class="swiper-tab-item" data-current="0" catchtap="clickTab">
+    <i class="{{currentTab==0?'active':''}}"><image src="{{currentTab==0?iconColor[0]:iconColor[1]}}"/><em>糖果屋</em></i></view><span class="line">|</span>
+    <view class="swiper-tab-item" data-current="1" catchtap="clickTab">
+    <i class="{{currentTab==1?'active':''}}"><image src="{{currentTab==1?iconColor[2]:iconColor[3]}}"/><em>我的资产</em></i></view>
+  </view>
+</view>
+<view class="openwindow {{openwindowhide}}">
+  <view class="hidebg"></view>
+  <view class="hidecontent">{{openwindowtext}}</view>
+</view>

@@ -1,0 +1,19 @@
+<!--pages/cash/cash.wxml-->
+<!--index.wxml-->
+<view class="logo">iToken</view>
+<view class="backa" bindtap="backup"><image src="../../images/jt.png"/></view>
+<view class="container">
+  <view class="cash">
+    <text>提现数量({{cashName}}）</text>
+    <input class="weui-input" type="number" value='{{cash}}' maxlength='11' disabled='false'/>
+  </view>
+  <view class="address">
+  <input placeholder='请输入TrustNote钱包地址' bindinput="bindKeyInput"/>
+  </view>
+</view>
+<button bindtap="sendDate" class="pushbutton gcash" disabled='{{disabled}}'><image src="../../images/sublimt.png"/><i>提现</i></button>
+<view class="openwindow {{openwindowhide}}">
+  <view class="hidebg"></view>
+  <view class="hidecontent">{{openwindowtext}}</view>
+</view>
+

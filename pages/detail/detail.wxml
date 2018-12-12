@@ -1,0 +1,26 @@
+<!--index.wxml-->
+<view class="logo">iToken</view>
+<view class="backa" bindtap="backup"><image src="../../images/jt.png"/></view>
+<view class="container backimg">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="listcount">
+      <view  bindtap="onclickByPinpai"  class="list"><image class="spanlogo" src="{{array.avatarUrl}}" /><span class="spanfont">{{array.symbol}}</span>
+        <text>{{array.amount}}</text>
+      </view>
+      <view class="introducebg">
+        <text class="introduce">{{array.comment}}</text>
+        </view>
+  </view>
+</view>
+<view bindtap="pushCash" class="pushbutton cash"><image src="../../images/sublimt.png"/> 提现</view>
+<view  class="pushbutton"><image src="../../images/greey.png"/> 发红包 </view>
+<view class="openwindow {{openwindowhide}}">
+  <view class="hidebg"></view>
+  <view class="hidecontent">{{openwindowtext}}</view>
+</view>
